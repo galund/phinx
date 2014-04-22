@@ -95,7 +95,7 @@ Configuration File Parameter
 
 When running Phinx from the command line, you may specify a configuration file using the ``--configuration`` or ``-c`` parameter. In addition to YAML, the configuration file may be the computed output of a PHP file as a PHP array:
 
-.. code-block:: php
+.. code-block::
 <?php
     return array(
         "paths" => array(
