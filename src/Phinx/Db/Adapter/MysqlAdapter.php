@@ -462,8 +462,7 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
         $indexes = $this->getIndexes($tableName);
         
         foreach ($indexes as $index) {
-            $a = array_diff($columns, $index['columns']);
-            if (empty($a)) {
+            if ($columns == $index['columns']) {
                 return true;
             }
         }
