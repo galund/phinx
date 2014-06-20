@@ -532,4 +532,22 @@ class MysqlAdapterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($comment, $columnWithComment['column_comment'], 'Dont set column comment correctly');
     }
+
+    public function testHasIndex()
+    {
+        $table = new \Phinx\Db\Table('table1', array(), $this->adapter);
+        $table->addColumn('col1', 'integer');
+        $table->addColumn('col2', 'integer');
+        $table->addColumn('col3', 'integer');
+        $table->addIndex(array('col1', 'col2'));
+        $table->save();
+        $this->assertTrue($table->hasIndex(array('col1', 'col2')));
+        $this->assertFalse($table->hasIndex('col1'));
+        $this->assertFalse($table->hasIndex('col2'));
+        $this->assertFalse($table->hasIndex('col3'));
+        $table->addIndex(array('col3'));
+        $table->save();
+        $this->assertTrue($table->hasIndex('col3'));
+    }
+
 }
