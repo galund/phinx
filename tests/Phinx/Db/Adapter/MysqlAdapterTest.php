@@ -152,7 +152,8 @@ class MysqlAdapterTest extends \PHPUnit_Framework_TestCase
               ->addColumn('tag_id', 'integer')
               ->save();
         $this->assertTrue($this->adapter->hasIndex('table1', array('user_id', 'tag_id')));
-        $this->assertTrue($this->adapter->hasIndex('table1', array('tag_id', 'USER_ID')));
+        $this->assertTrue($this->adapter->hasIndex('table1', array('USER_ID', 'tag_id')));
+        $this->assertFalse($this->adapter->hasIndex('table1', array('tag_id', 'user_id')));
         $this->assertFalse($this->adapter->hasIndex('table1', array('tag_id', 'user_email')));
     }
 
